@@ -1,2 +1,2 @@
 # ProjectLieDetectorRNN
-The project contain a old example of detect the lie for the stress using the recurrent neural network.
+The project contain an old example of lie detection for the stress using recurrent neural networks.
