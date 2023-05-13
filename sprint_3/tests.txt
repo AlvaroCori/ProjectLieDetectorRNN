@@ -1,0 +1,306 @@
+tests
+
+#funciones de redes neuronales
+def previous_RNN():
+    model = Sequential()
+    model.add(LSTM(units=50,input_shape= dim_entrada))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(2,activation='softmax'))
+    model.compile(loss='categorical_crossentropy', metrics=['accuracy'],optimizer='adam')
+    return model
+
+def new_RNN_a():
+    model = Sequential()
+    model.add(LSTM(units=50,input_shape= dim_entrada, return_sequences=False))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.2))
+    model.add(Dense(2,activation='softmax'))
+    model.compile(loss='categorical_crossentropy', metrics=['accuracy'],optimizer='adam')
+    return model
+'''
+Cross-validated score (Accuracy score): 0.7987477638640429
+-----------------------
+Resumen
+Fold score (Accuracy score): 0.8102678571428571
+Fold score (Accuracy score): 0.7516778523489933
+Fold score (Accuracy score): 0.7740492170022372
+Fold score (Accuracy score): 0.8232662192393736
+Fold score (Accuracy score): 0.8344519015659956
+'''
+def new_RNN_b():
+    model = Sequential()
+    model.add(LSTM(units=50,input_shape= dim_entrada, return_sequences=False))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.1))
+    model.add(Dense(2,activation='softmax'))
+    model.compile(loss='categorical_crossentropy', metrics=['accuracy'],optimizer='adam')
+    return model
+
+'''
+Cross-validated score (Accuracy score): 0.8090339892665475
+-----------------------
+Resumen
+Fold score (Accuracy score): 0.8214285714285714
+Fold score (Accuracy score): 0.785234899328859
+Fold score (Accuracy score): 0.8008948545861297
+Fold score (Accuracy score): 0.8098434004474273
+Fold score (Accuracy score): 0.8277404921700223
+'''
+
+def new_RNN_c():
+    model = Sequential()
+    model.add(LSTM(units=50,input_shape= dim_entrada, return_sequences=False))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.7))
+    model.add(Dense(2,activation='softmax'))
+    model.compile(loss='categorical_crossentropy', metrics=['accuracy'],optimizer='adam')
+    return model
+
+'''
+Cross-validated score (Accuracy score): 0.7754919499105546
+-----------------------
+Resumen
+Fold score (Accuracy score): 0.7879464285714286
+Fold score (Accuracy score): 0.7539149888143176
+Fold score (Accuracy score): 0.7718120805369127
+Fold score (Accuracy score): 0.7628635346756152
+Fold score (Accuracy score): 0.8008948545861297
+'''
+
+def double_lstm():
+    model = Sequential()
+    model.add(LSTM(units=50,input_shape= dim_entrada, return_sequences=True))
+    model.add(LSTM(units=50,input_shape= dim_entrada, return_sequences=False))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(2,activation='softmax'))
+    model.compile(loss='categorical_crossentropy', metrics=['accuracy'],optimizer='adam')
+    return model
+
+'''
+Cross-validated score (Accuracy score): 0.7920393559928444
+-----------------------
+Resumen
+Fold score (Accuracy score): 0.78125
+Fold score (Accuracy score): 0.767337807606264
+Fold score (Accuracy score): 0.8008948545861297
+Fold score (Accuracy score): 0.7941834451901566
+Fold score (Accuracy score): 0.8165548098434005
+'''
+
+#fail tarda mucho
+def triple_lstm():
+    model = Sequential()
+    model.add(LSTM(units=50,input_shape= dim_entrada, return_sequences=True))
+    model.add(LSTM(units=50,input_shape= dim_entrada, return_sequences=True))
+    model.add(LSTM(units=50,input_shape= dim_entrada, return_sequences=False))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(2,activation='softmax'))
+    model.compile(loss='categorical_crossentropy', metrics=['accuracy'],optimizer='adam')
+    return model
+
+'''
+Cross-validated score (Accuracy score): 0.7991949910554562
+-----------------------
+Resumen
+Fold score (Accuracy score): 0.7991071428571429
+Fold score (Accuracy score): 0.785234899328859
+Fold score (Accuracy score): 0.814317673378076
+Fold score (Accuracy score): 0.7762863534675615
+Fold score (Accuracy score): 0.8210290827740492
+'''
+def dense_Layer():
+    model = Sequential()
+    model.add(LSTM(units=50,input_shape= dim_entrada, return_sequences=False))
+    model.add(Dense(50))
+    model.add(Dense(2,activation='softmax'))
+    model.compile(loss='categorical_crossentropy', metrics=['accuracy'], optimizer='adam')
+    return model
+
+'''
+Cross-validated score (Accuracy score): 0.7844364937388193
+-----------------------
+Resumen
+Fold score (Accuracy score): 0.7589285714285714
+Fold score (Accuracy score): 0.7740492170022372
+Fold score (Accuracy score): 0.796420581655481
+Fold score (Accuracy score): 0.785234899328859
+Fold score (Accuracy score): 0.8076062639821029
+'''
+
+def possible_RNN():
+    model = Sequential()
+    model.add(LSTM(units=50,input_shape= dim_entrada, return_sequences=True))
+    model.add(Activation('relu'))
+    model.add(LSTM(units=50,input_shape= dim_entrada, return_sequences=False))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(2,activation='softmax'))
+    model.compile(loss='categorical_crossentropy', metrics=['accuracy'],optimizer='adam')
+    return model
+'''
+Cross-validated score (Accuracy score): 0.7898032200357782
+-----------------------
+Resumen
+Fold score (Accuracy score): 0.7834821428571429
+Fold score (Accuracy score): 0.8299776286353467
+Fold score (Accuracy score): 0.767337807606264
+Fold score (Accuracy score): 0.7472035794183445
+Fold score (Accuracy score): 0.8210290827740492
+'''
+def activation_RNN():
+    model = Sequential()
+    model.add(LSTM(units=50,input_shape= dim_entrada, return_sequences=False))
+    model.add(Activation('relu'))
+    model.add(Activation('relu'))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(2,activation='softmax'))
+    model.compile(loss='categorical_crossentropy', metrics=['accuracy'],optimizer='adam')
+    return model
+
+'''
+Cross-validated score (Accuracy score): 0.802772808586762
+-----------------------
+Resumen
+Fold score (Accuracy score): 0.8080357142857143
+Fold score (Accuracy score): 0.8076062639821029
+Fold score (Accuracy score): 0.8008948545861297
+Fold score (Accuracy score): 0.767337807606264
+Fold score (Accuracy score): 0.8299776286353467
+'''
+def double_dropout():
+    model = Sequential()
+    model.add(LSTM(units=50,input_shape= dim_entrada, return_sequences=True))
+    model.add(Dropout(0.5))
+    model.add(LSTM(units=50,input_shape= dim_entrada, return_sequences=False))
+    model.add(Dropout(0.5))
+    #model.add(Activation('relu'))
+    model.add(Dense(2,activation='softmax'))
+    model.compile(loss='categorical_crossentropy', metrics=['accuracy'],optimizer='adam')
+    return model
+
+'''
+Cross-validated score (Accuracy score): 0.8019136281355056
+-----------------------
+Resumen
+Fold score (Accuracy score): 0.7945736434108527
+Fold score (Accuracy score): 0.8036175710594315
+Fold score (Accuracy score): 0.7800776196636481
+Fold score (Accuracy score): 0.815006468305304
+Fold score (Accuracy score): 0.8163001293661061
+'''
+def double_dropout_activation():
+    model = Sequential()
+    model.add(LSTM(units=50,input_shape= dim_entrada, return_sequences=True))
+    model.add(Dropout(0.5))
+    model.add(LSTM(units=50,input_shape= dim_entrada, return_sequences=False))
+    model.add(Dropout(0.5))
+    model.add(Activation('relu'))
+    model.add(Dense(2,activation='softmax'))
+    model.compile(loss='categorical_crossentropy', metrics=['accuracy'],optimizer='adam')
+    return model
+
+'''
+Cross-validated score (Accuracy score): 0.7944142746314973
+-----------------------
+Resumen
+Fold score (Accuracy score): 0.7622739018087855
+Fold score (Accuracy score): 0.810077519379845
+Fold score (Accuracy score): 0.7865459249676585
+Fold score (Accuracy score): 0.8020698576972833
+Fold score (Accuracy score): 0.8111254851228978
+'''
+def double_RNN():
+    model = Sequential()
+    model.add(LSTM(units=50,input_shape= dim_entrada, return_sequences=True))
+    model.add(Dropout(0.5))
+    model.add(Activation('relu'))
+    model.add(LSTM(units=25,input_shape= dim_entrada, return_sequences=False))
+    model.add(Dropout(0.5))
+    model.add(Activation('relu'))
+    model.add(Dense(2,activation='softmax'))
+    model.compile(loss='categorical_crossentropy', metrics=['accuracy'],optimizer='adam')
+    return model
+'''
+Cross-validated score (Accuracy score): 0.8057926040858546
+-----------------------
+Resumen
+Fold score (Accuracy score): 0.7958656330749354
+Fold score (Accuracy score): 0.789405684754522
+Fold score (Accuracy score): 0.7878395860284605
+Fold score (Accuracy score): 0.8279430789133247
+Fold score (Accuracy score): 0.8279430789133247
+'''
+
+def basic():
+    dropout = 0.5
+    model = Sequential()
+    model.add(LSTM(50,input_shape= dim_entrada))
+    model.add(Dense(2,activation = 'sigmoid'))
+
+    model.compile(loss = 'binary_crossentropy', optimizer = 'Adam', metrics = ['accuracy'])
+    return model
+'''
+Cross-validated score (Accuracy score): 0.8047582104990949
+-----------------------
+Resumen
+Fold score (Accuracy score): 0.7984496124031008
+Fold score (Accuracy score): 0.8126614987080103
+Fold score (Accuracy score): 0.7813712807244502
+Fold score (Accuracy score): 0.8227684346701164
+Fold score (Accuracy score): 0.8085381630012937
+
+'''
+
+def new_RNN():
+    model = Sequential()
+    model.add(LSTM(units=50,input_shape= dim_entrada, return_sequences=True))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.5))
+    model.add(LSTM(units=20,input_shape= dim_entrada, return_sequences=True))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.5))
+    model.add(LSTM(units=10,input_shape= dim_entrada, return_sequences=False))
+    model.add(Activation('relu'))
+    model.add(Dropout(0.5))
+    model.add(Dense(2,activation='softmax'))
+    model.compile(loss='categorical_crossentropy', metrics=['accuracy'],optimizer='adam')
+    return model
+
+'''
+model = Sequential()
+model.add(layers.Embedding(input_dim=20000, 
+                           output_dim=100, 
+                           input_length=300))
+model.add(layers.Bidirectional(layers.LSTM(100, dropout=0.5, 
+                                           recurrent_dropout=0.5, 
+                                           return_sequences=True)))
+model.add(layers.GlobalMaxPool1D())
+model.add(layers.Dense(128, activation='relu'))
+model.add(layers.Dropout(dropout))
+model.add(layers.Dense(64, activation='relu'))
+model.add(layers.Dropout(dropout))
+model.add(layers.Dense(32, activation='relu'))
+model.add(layers.Dropout(dropout))
+model.add(layers.Dense(1, activation='sigmoid'))
+
+model.compile(optimizer=opt, 
+              loss='binary_crossentropy', 
+              metrics=['accuracy'])
+model.summary()
+'''
+'''
+Cross-validated score (Accuracy score): 0.7929338103756708
+-----------------------
+Resumen
+Fold score (Accuracy score): 0.7901785714285714
+Fold score (Accuracy score): 0.8277404921700223
+Fold score (Accuracy score): 0.7897091722595079
+Fold score (Accuracy score): 0.7472035794183445
+Fold score (Accuracy score): 0.8098434004474273
+2
+#https://keras.io/api/callbacks/early_stopping/
+'''
